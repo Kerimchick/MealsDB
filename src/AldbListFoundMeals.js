@@ -4,13 +4,25 @@ import {Link, useParams} from "react-router-dom";
 
 const AldbListFoundMeals = () => {
     const [list, setList] = useState([])
+    const [notFound, setNotFound] = useState("")
     const params = useParams()
     useEffect(() => {
         axios(`https://www.themealdb.com/api/json/v1/1/search.php?s=${params.name}`)
-            .then(res => setList(res.data.meals))
+            .then(res => {
+                console.log(res.data.meals)
+                if (!res.data.meals){
+                    setNotFound("Не найдено такое блюдо")
+                } else {
+                    return setList(res.data.meals)
+                }
+
+
+            })
     }, [params.name])
+
     return(
         <div>
+            <p>{notFound}</p>
             <Link to="/">
                 <button className="btn-home">Home</button>
             </Link>
