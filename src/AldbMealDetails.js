@@ -9,14 +9,14 @@ const AldbMealDetails = () => {
     useEffect(() => {
         axios(`https://www.themealdb.com/api/json/v1/1/search.php?s=${params.title}`)
             .then(res => setMeal(res.data.meals[0]))
-    }, [])
+    }, [params.title])
 
     const ingredients = Array(20).fill(0).reduce((acc, item, idx) => {
         if(meal[`strIngredient${idx + 1}`]){
             return [...acc, meal[`strIngredient${idx + 1}`]]
         }
         return acc
-    }, [params.title])
+    }, [])
     console.log(ingredients)
 
     return (
