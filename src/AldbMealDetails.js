@@ -16,7 +16,7 @@ const AldbMealDetails = () => {
             return [...acc, meal[`strIngredient${idx + 1}`]]
         }
         return acc
-    }, [])
+    }, [params.title])
     console.log(ingredients)
 
     return (
@@ -26,14 +26,14 @@ const AldbMealDetails = () => {
             </Link>
             <div className="row">
                 <div className="col-6">
-                    <img src={meal.strMealThumb} className="image"/>
+                    <img src={meal.strMealThumb} className="image" alt={meal.strMeal} />
                 </div>
                 <div className="col-6">
                     <div className="row">{
                         ingredients.map(el =>
                             <div className="col-4">
                                 <Link to={`/ingredient/${el}`}>
-                                    <img src={`https://www.themealdb.com/images/ingredients/${el}.png`} className="image"/>
+                                    <img src={`https://www.themealdb.com/images/ingredients/${el}.png`} className="image" alt={el}/>
                                     <p>{el}</p>
                                 </Link>
                             </div>

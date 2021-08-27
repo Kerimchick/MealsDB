@@ -8,7 +8,7 @@ const AldbListFoundMeals = () => {
     useEffect(() => {
         axios(`https://www.themealdb.com/api/json/v1/1/search.php?s=${params.name}`)
             .then(res => setList(res.data.meals))
-    }, [])
+    }, [params.name])
     return(
         <div>
             <Link to="/">
@@ -19,7 +19,7 @@ const AldbListFoundMeals = () => {
                     list.map(item => (
                         <div key={item.idMeal} className="col-4">
                             <Link to={`/meal/${item.strMeal}`}>
-                                <img src={item.strMealThumb} className="image"/>
+                                <img src={item.strMealThumb} className="image" alt={item.strMeal}/>
                                 <div>{item.strMeal}</div>
                             </Link>
                         </div>
